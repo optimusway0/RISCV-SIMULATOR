@@ -1,5 +1,0 @@
-addi 1 1
-addi 30 39
-addi -3 4
-sub 8 4
-addi 25 23
