@@ -3,6 +3,6 @@
 Para compilar y ejecutar 
 
 ```
-g++ main.cpp -o test
-./test
+make
+make run
 ```
