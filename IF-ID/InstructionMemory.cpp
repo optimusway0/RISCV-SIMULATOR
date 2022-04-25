@@ -156,7 +156,7 @@ InstructionMemory::InstructionMemory(sc_module_name nm) : sc_module(nm) {
 }
 
 void InstructionMemory::read() {
-  int PC = counterIn.read();
+  int PC = counterIn.read() / 4;
   string line = memory[PC];
 
   //Leemos la instruccion (ADD, OR, SUB, etc..)
@@ -208,6 +208,7 @@ void InstructionMemory::read() {
     break;
     default:
       cout << "'" << instruction << "' es una instruccion invalida \n";
+      sc_stop();
       return;
     break;
   }

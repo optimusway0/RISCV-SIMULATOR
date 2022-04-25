@@ -1,4 +1,3 @@
-
 #include "Testbench.h"
 #include <iomanip>
 
@@ -15,10 +14,8 @@ void Testbench::Test(){
     std::cout << "Tiempo       PC      rd      rs1     rs2     imm     opcode\n";
     std::cout << "-----------------------------------------------------------\n";
 
-    wait();
-
-    for(int i = 0; i < 14; i++){
-        counterIn.write(i);
+    for(int i = 0; i < 15; i++){
+        pc.write(i*4);
         wait();
         Print();
     }
@@ -30,7 +27,7 @@ void Testbench::Print(){
 
     std::cout << std::setw(6) << sc_time_stamp();
     std::cout << std::setw(4) << "";
-    std::cout << std::setw(4) << counterIn.read();
+    std::cout << std::setw(4) << pc.read();
     std::cout << std::setw(4) << "";
     std::cout << std::setw(4) << rd.read();
     std::cout << std::setw(4) << "";

@@ -12,7 +12,7 @@ public:
     SC_CTOR(Testbench);
     ~Testbench();
 
-    sc_out< sc_uint<32> > counterIn; //Contador de Programa
+    sc_out< sc_uint<32> > pc; //Contador de Programa
 
     sc_in< sc_uint<5> > rd;
     sc_in< sc_uint<5> > rs1;
