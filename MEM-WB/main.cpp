@@ -15,8 +15,8 @@ int sc_main (int argv, char* argc[])
     Testbench tb("tb");
 
     sc_signal<bool> weSg;
-    sc_signal< sc_uint<32> > dirSg, wSg;
-    sc_signal< sc_uint<32> > dataSg;
+    sc_signal< sc_uint<32> > dirSg;
+    sc_signal< sc_int<32> > dataSg, wSg;
 
     memory.dirIn(dirSg);
     memory.wIn(wSg);

@@ -15,8 +15,8 @@ public:
     sc_out<bool> weOut; //Señales de control
 
     sc_out< sc_uint<32> > dirOut;
-    sc_out< sc_uint<32> > wOut;
-    sc_in< sc_uint<32> > dataIn;
+    sc_out< sc_int<32> > wOut;
+    sc_in< sc_int<32> > dataIn;
     sc_in<bool> clkIn;
 
 };
