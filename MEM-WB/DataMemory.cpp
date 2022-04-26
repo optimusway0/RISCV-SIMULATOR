@@ -13,7 +13,7 @@ DataMemory::~DataMemory() {}
 
 void DataMemory::Read() //Instruccion lw
 {
-    if(reIn.read() )
+    if(!weIn.read() )
     {
        if(dirIn.read() % 4 == 0) 
        {

@@ -12,7 +12,7 @@ public:
     SC_CTOR(Testbench);
     ~Testbench();
 
-    sc_out<bool> weOut, reOut; //Señales de control
+    sc_out<bool> weOut; //Señales de control
 
     sc_out< sc_uint<32> > dirOut;
     sc_out< sc_uint<32> > wOut;

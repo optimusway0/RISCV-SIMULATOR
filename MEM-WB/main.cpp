@@ -14,7 +14,7 @@ int sc_main (int argv, char* argc[])
     DataMemory memory("memory");
     Testbench tb("tb");
 
-    sc_signal<bool> reSg, weSg;
+    sc_signal<bool> weSg;
     sc_signal< sc_uint<32> > dirSg, wSg;
     sc_signal< sc_uint<32> > dataSg;
 
@@ -22,14 +22,12 @@ int sc_main (int argv, char* argc[])
     memory.wIn(wSg);
     memory.dataOut(dataSg);
     memory.weIn(weSg);
-    memory.reIn(reSg);
     memory.clkIn(clock);
 
     tb.dirOut(dirSg);
     tb.wOut(wSg);
     tb.dataIn(dataSg);
     tb.weOut(weSg);
-    tb.reOut(reSg);
     tb.clkIn(clock);
 
     sc_start();
