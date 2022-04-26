@@ -4,7 +4,7 @@
 # Versión de SYSTEMC
 	VERSION = systemc-2.3.3
 # Especifique los archivos .cpp
-	SRCS = main.cpp DataMemory.cpp Testbench.cpp
+	SRCS = main.cpp Mux.cpp Testbench.cpp
 # Nombre del ejecutable
 	TARGET = test
 #
@@ -41,7 +41,7 @@ ifeq ($(shell uname -m), x86_64)
 endif
 
 ifeq ($(VERSION),systemc-2.3.1)
-	CC = g++ -std=c++11
+	CC = g++ -std=c++98
 endif
 
 INCDIR  = -I. -I.. -I../gates -I$(SYSTEMC_HOME_BY_VERSION)/include
