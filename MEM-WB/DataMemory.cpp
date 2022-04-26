@@ -3,10 +3,10 @@
 DataMemory::DataMemory(sc_module_name mn) : sc_module(mn)
 {
     SC_METHOD(Read);
-    sensitive << clkIn.pos();
+    sensitive << clkIn.pos() << dirIn << wIn << dataOut;
 
     SC_METHOD(Write);
-    sensitive << clkIn.neg();
+    sensitive << clkIn << dirIn << wIn << dataOut;
 }
 
 DataMemory::~DataMemory() {}
@@ -19,7 +19,7 @@ void DataMemory::Read() //Instruccion lw
        {
             int tope = dirIn.read();
             
-            sc_uint<32> valor;
+            sc_int<32> valor;
  
             for(int i = tope, k = 0; i<(tope + 4); i++) 
             {

@@ -4,7 +4,6 @@
 Testbench::Testbench(sc_module_name mn) : sc_module(mn)
 {
     SC_THREAD(Test);
-
     sensitive << clkIn;
     dont_initialize();
 }
@@ -13,9 +12,10 @@ Testbench::~Testbench() {}
 
 void Testbench::Test()
 {
-    int numbers[] = {12, 14, 32, 22};
-    int adresses[] = {0, 4, 8, 16};
+    int numbers[] = {12, -14, 32, -22}; //valores que seran guardadas en la memoria de datos
+    int adresses[] = {0, 4, 8, 16}; // Direcciones a utilizar
 
+    //Simulamos que primero se guardan  datos en memoria
     for(int i = 0; i<4; i++) 
     {
         weOut.write(1);
@@ -24,20 +24,15 @@ void Testbench::Test()
         wOut.write(numbers[i]);
 
         wait();
-        wait();
-        wait();
     }
 
     std::cout << "Tiempo    weIn   clkIn     dataIn\n";
-    
+    //Simulamos que se leen esos datos previamente guardados
     for(int i = 0; i<4; i++)
     {
         weOut.write(0);
 
         dirOut.write(adresses[i]);
-
-        wait();
-        wait();
         wait();
 
         Print();
