@@ -19,6 +19,7 @@ void Testbench::Test()
     for(int i = 0; i<4; i++) 
     {
         weOut.write(1);
+        reOut.write(0);
 
         dirOut.write(adresses[i]);
         wOut.write(numbers[i]);
@@ -31,6 +32,7 @@ void Testbench::Test()
     for(int i = 0; i<4; i++)
     {
         weOut.write(0);
+        reOut.write(1);
 
         dirOut.write(adresses[i]);
         wait();

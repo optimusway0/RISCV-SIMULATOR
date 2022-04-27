@@ -12,10 +12,10 @@ public:
     SC_CTOR(DataMemory);
     ~DataMemory();
 
-    sc_in<sc_uint<32> > dirIn;
+    sc_in< sc_uint<32> > dirIn;
     sc_in< sc_int<32> > wIn;
     sc_out< sc_int<32> > dataOut; 
-    sc_in<bool> weIn; //Señales de control  
+    sc_in<bool> weIn, reIn; //Señales de control  
 
     sc_in<bool> clkIn;
 
