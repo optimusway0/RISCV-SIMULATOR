@@ -55,7 +55,7 @@ void Testbench::test() {
 	cout << "Tiempo     opcode  ALUSrc  MemtoReg  RegWrite  MemRead  MemWrite  Branch\n"
 	     << "---------------------------------------------------------------------\n";
 
-  int instruction[] = {ADD, XOR, ADDI, LW, SW};
+  int instruction[] = {ADD, XOR, ADDI, LW, SW, BNE};
 
   for (int i : instruction) {
     opcodeOut.write(i);

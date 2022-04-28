@@ -73,7 +73,7 @@ void UnidadControl::obtener_operacion() {
 
 	// instruccion de tipo S
 	} else if (opcodeIn.read() == SW) {
-		ALUSrcOut.write(true);         // el 2do operando de la ALu será el valor inmediato
+		ALUSrcOut.write(true);         // el 2do operando de la ALu será el valor inmediato 
 		MemtoRegOut.write(none);       // no se enviará al AR (no importa que valor se envie, no se usará)
 		RegWriteOut.write(false);      // no se permite la escritura en el registro AR
 		MemWriteOut.write(true);       // se permite la escritura en DataMemory
@@ -81,8 +81,14 @@ void UnidadControl::obtener_operacion() {
 		branchOut.write(false);        // sin saltos
 
 
-	// instruccion de tipo 
+	// instruccion de tipo salto
 	} else if (opcodeIn.read() >= BEQ && opcodeIn.read() <= BGE) {
+		ALUSrcOut.write(false);         // el 2do operando de la ALu será el 2do registro leído del AR
+		MemtoRegOut.write(none);       // no se enviará al AR (no importa que valor se envie, no se usará)
+		RegWriteOut.write(false);      // no se permite la escritura en el registro AR
+		MemWriteOut.write(false);       // no se permite la escritura en DataMemory
+		MemReadOut.write(false);       // no se permite la lecutra en DataMemory
+		branchOut.write(true);        // sin saltos
 
 	}
 	else {
