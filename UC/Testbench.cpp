@@ -1,5 +1,6 @@
 #include "Testbench.h"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 Testbench::Testbench(sc_module_name mn) : sc_module(mn) {
@@ -38,14 +39,14 @@ enum Instructions {
 };
 
 void Testbench::print() {
-	cout << sc_time_stamp() << "\t      "
-	     << opcodeOut.read() << "\t\t"
-	     << ALUSrcIn.read() << "\t"
-	     << MemtoRegIn.read() << "\t"
-	     << RegWriteIn.read() << "\t"
-	     << MemReadIn.read() << "\t  "
-	     << MemWriteIn.read() << "\t   "
-	     << branchIn.read() << "\n";
+	cout << setw(6) << sc_time_stamp() << "   "
+	     << setw(6) << opcodeOut.read() << "   "
+	     << setw(6) << ALUSrcIn.read() << "  "
+	     << setw(6) << MemtoRegIn.read() << "   "
+	     << setw(6) << RegWriteIn.read() << "  "
+	     << setw(6) << MemReadIn.read() << "   "
+	     << setw(6) << MemWriteIn.read() << "   "
+	     << setw(6) << branchIn.read() << "\n";
 }
 
 
@@ -54,15 +55,13 @@ void Testbench::test() {
 	cout << "Tiempo     opcode  ALUSrc  MemtoReg  RegWrite  MemRead  MemWrite  Branch\n"
 	     << "---------------------------------------------------------------------\n";
 
-	// test 1 instruccion de tipo R (add)
-	opcodeOut.write(ADD);
-	wait();
-	print();
+  int instruction[] = {ADD, XOR, ADDI, LW, SW};
 
-	// test 2 instruccion de tipo R (XOR)
-	opcodeOut.write(XOR);
-	wait();
-	print();
+  for (int i : instruction) {
+    opcodeOut.write(i);
+    wait();
+    print();
+  }
 
 
 	sc_stop();
