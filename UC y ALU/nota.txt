@@ -1,0 +1,8 @@
+Al intentar modificar 
+
+aluOpOut.write(opcodeIn.read())
+
+aluOpOut no está guardando el valor de opcodeIn el cuál tiene el tipo de instruccion a ejecutar.
+
+post: más tarde subo por separado un test de solo la unidad de control.
+indicando que valores deben tomar las señales para las instrucciones de tipo R, I, L, S, etc.
