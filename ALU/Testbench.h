@@ -10,7 +10,9 @@ public:
 
     sc_out<sc_int<32>> aOut, bOut;        
     sc_in<sc_int<32>> aluResultIn;
+    sc_out<sc_int<32>> pSignalOut;
     sc_out<sc_uint<5>> ALUOpOut;
+    sc_out<bool> ALUSrcOut;
     sc_in_clk clkIn; 
 
 private:
