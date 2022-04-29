@@ -91,11 +91,6 @@ void UnidadControl::obtener_operacion() {
 		MemReadOut.write(false);       // no se permite la lecutra en DataMemory
 		branchOut.write(true);        // sin saltos
 
-	// instruccion de tipo 
-	} else if (opcodeIn.read() >= BEQ && opcodeIn.read() <= BGE) {
-
-
-	}
 	else {
 		cout << "Instruccion invalida, cerrando simulacion" << endl;
 		sc_stop();
