@@ -46,5 +46,5 @@ Para eliminar los archivos .o
 
  - a
  - a
- - a
+ - Edixon Toro V27364279
  - Johan Paredes V27507388
