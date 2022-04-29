@@ -89,7 +89,7 @@ void UnidadControl::obtener_operacion() {
 		RegWriteOut.write(false);      // no se permite la escritura en el registro AR
 		MemWriteOut.write(false);       // no se permite la escritura en DataMemory
 		MemReadOut.write(false);       // no se permite la lecutra en DataMemory
-		branchOut.write(true);        // sin saltos
+		branchOut.write(true);        // habilita el saldo
 
 	else {
 		cout << "Instruccion invalida, cerrando simulacion" << endl;
