@@ -4,7 +4,7 @@ ProgramCounter::ProgramCounter(sc_module_name moduleName) : sc_module(moduleName
   number = 0;
 
   SC_METHOD(operation);
-  sensitive << aIn;
+  sensitive << clkIn;
 }
 
 ProgramCounter::~ProgramCounter(){}

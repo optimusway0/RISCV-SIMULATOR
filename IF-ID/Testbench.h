@@ -12,7 +12,8 @@ public:
     SC_CTOR(Testbench);
     ~Testbench();
 
-    sc_out< sc_uint<32> > pc; //Contador de Programa
+    sc_out< sc_int<32> > jump;
+    sc_out<bool> eJump;
 
     sc_in< sc_uint<5> > rd;
     sc_in< sc_uint<5> > rs1;

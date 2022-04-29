@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <tuple> 
 #include "InstructionMemory.h"
 
 enum Instructions {
@@ -115,7 +116,7 @@ void TypeS(string &line, int &rs1, int &rs2, int &imm){
   rs1 = stoi(temp);
  }
 
-void TypeB(string &line, int &rd, int &rs1, int &imm){
+void TypeB(string &line, int &rd, int &rs1, int &imm, vector<tag> tags, int pc){
   string temp;
   temp = line.substr(1, line.find(','));
   line.erase(0, line.find(',')+1);
@@ -125,7 +126,12 @@ void TypeB(string &line, int &rd, int &rs1, int &imm){
   line.erase(0, line.find(',')+1);
   rs1 = stoi(temp);
 
-  imm = stoi(line);
+  //BUSCA EN EL VECTOR DE TAGS Y PONE EN IMM LA DIRECCION RELATIVA
+  for(const auto &i : tags){
+    if(get<1>(i) == line){ 
+      imm = get<0>(i) - pc; 
+    }
+  }
 }
 
 InstructionMemory::InstructionMemory(sc_module_name nm) : sc_module(nm) {
@@ -141,9 +147,23 @@ InstructionMemory::InstructionMemory(sc_module_name nm) : sc_module(nm) {
   }
 
   int i = 0;
+  string line;
 
   while(input.peek() != EOF){
-    getline(input, memory[i], '\n');
+    getline(input, line, '\n');
+
+    //DETECTAR SI ES UNA ETIQUETA
+    //Y agregarlo al vector de etiquetas
+
+    if(line[0] >= 65 && line[0] <= 122){
+      line = line.substr(0, line.find(':'));
+      tags.push_back({i*4,line});
+      continue;
+    }
+
+    //Si es una instruccion se agrega a la memoria
+
+    memory[i] = line;
     i++;    
   }
 
@@ -159,8 +179,18 @@ void InstructionMemory::read() {
   int PC = counterIn.read() / 4;
   string line = memory[PC];
 
+  if(line.empty()){
+    rd.write(0);
+    rs1.write(0);
+    rs2.write(0);
+    opcode.write(0);
+    imm.write(0);
+    sc_stop();
+    return;
+  }
+
   //Leemos la instruccion (ADD, OR, SUB, etc..)
-  string instruction = line.substr(0, line.find(' '));
+  string instruction = line.substr(1, line.find(' ')-1);
   line.erase(0, line.find(' ')+1);
 
   //Eliminamos los espacios ' '
@@ -204,12 +234,11 @@ void InstructionMemory::read() {
     case BNE:
     case BLT:
     case BGE:
-      TypeB(line, _rd, _rs1, _rs2);
+      TypeB(line, _rd, _rs1, _imm, tags, PC*4);
     break;
     default:
       cout << "'" << instruction << "' es una instruccion invalida \n";
       sc_stop();
-      return;
     break;
   }
 
