@@ -27,12 +27,18 @@ void Testbench::Test()
         wait();
     }
 
-    std::cout << "Tiempo    weIn   clkIn     dataIn\n";
+    std::cout << "Tiempo    weIn   reIn    clkIn     wIn    branchOut    zeroOut    muxIfIn \n";
     //Simulamos que se leen esos datos previamente guardados
+    //con la instruccion lw
     for(int i = 0; i<4; i++)
     {
         weOut.write(0);
         reOut.write(1);
+        mentoReg.write(0); // simulamos que la unidad de control manda una señal de 1
+        
+        //Simulamos si se aprueban o no los saltos
+        branchOut.write(i);
+        zeroOut.write(i);
 
         dirOut.write(adresses[i]);
         wait();
@@ -49,7 +55,15 @@ void Testbench::Print()
     std::cout << std::setw(4) << "";
     std::cout << std::setw(4) << weOut.read();
     std::cout << std::setw(4) << "";
+    std::cout << std::setw(4) << reOut.read();
+    std::cout << std::setw(4) << "";
     std::cout << std::setw(4) << clkIn.read();
     std::cout << std::setw(4) << "";
-    std::cout << std::setw(4) << dataIn.read() << std::endl;   
+    std::cout << std::setw(4) << wIn.read();
+    std::cout << std::setw(4) << " | ";
+    std::cout << std::setw(4) << branchOut.read();
+    std::cout << std::setw(4) << "";
+    std::cout << std::setw(8) << zeroOut.read();
+    std::cout << std::setw(8) << "";
+    std::cout << std::setw(6) << muxIfIn.read() << std::endl;  
 }

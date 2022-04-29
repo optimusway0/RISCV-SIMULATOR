@@ -3,10 +3,10 @@
 DataMemory::DataMemory(sc_module_name mn) : sc_module(mn)
 {
     SC_METHOD(Read);
-    sensitive << clkIn.pos() << dirIn << wIn << dataOut;
+    sensitive << clkIn<< dirIn << wIn << dataOut;
 
     SC_METHOD(Write);
-    sensitive << clkIn << dirIn << wIn << dataOut;
+    sensitive << clkIn.pos() << dirIn << wIn << dataOut;
 }
 
 DataMemory::~DataMemory() {}
