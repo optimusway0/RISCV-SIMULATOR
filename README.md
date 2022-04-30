@@ -44,7 +44,7 @@ Para eliminar los archivos .o
 ## Integrantes
 		
 
- - a
+ - Juan Mora V27229408
  - Gabriel Perez V26587279
  - Edixon Toro V27364279
  - Johan Paredes V27507388
