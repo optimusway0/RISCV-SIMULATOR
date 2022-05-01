@@ -6,6 +6,7 @@
     {
     private:
         void operation(); 
+        void print();
     public:
         SC_CTOR(RegisterFile);
         

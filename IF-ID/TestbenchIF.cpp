@@ -10,13 +10,13 @@ TestbenchIF::TestbenchIF(sc_module_name mn) : sc_module(mn)
 TestbenchIF::~TestbenchIF() {}
 
 void TestbenchIF::Test(){
-    std::cout << "Tiempo      pc   result      rs1     rs2     imm     opcode\n";
-    std::cout << "-----------------------------------------------------------\n";
+    //std::cout << "Tiempo      pc   result      rs1     rs2     imm     opcode\n";
+    //std::cout << "-----------------------------------------------------------\n";
 
 
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 20; i++){
         wait();
-        Print();
+        //Print();
     }
 
     sc_stop();

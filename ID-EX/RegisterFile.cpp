@@ -7,11 +7,11 @@ RegisterFile::RegisterFile(sc_module_name nm) : sc_module(nm){
     // }
     
     SC_METHOD(operation); 
-    sensitive << clkIn;     
+    sensitive << rs1<< rs2<<rd<<clkIn;     
 }
 
 void RegisterFile::operation(){    
-    cout << "leyendo " << rs1.read() << " y " << rs2.read() << " que son " << storage[rs1.read()] << " y " << storage[rs2.read()]<< endl;       
+    //cout << "leyendo " << rs1.read() << " y " << rs2.read() << " que son " << storage[rs1.read()] << " y " << storage[rs2.read()]<< endl;       
 
     aOut.write(storage[rs1.read()]);
     bOut.write(storage[rs2.read()]);
@@ -19,8 +19,16 @@ void RegisterFile::operation(){
     if (weIn.read())
     {
        storage[rd.read()] = wIn.read();
-       cout << "se escribe " << wIn.read() << " en registro " << rd.read() << endl;
+       print();
     }       
+}
+
+void RegisterFile::print(){
+    cout << "Registros" << endl;
+    for(int i = 0; i<30; i++){
+        cout << "|" << storage[i] << "|";
+    }
+    cout << endl << endl;
 }
 
 

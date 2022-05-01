@@ -6,7 +6,7 @@ MuxEX::MuxEX(sc_module_name nm) : sc_module(nm) {
 }
 
 void MuxEX::operation() {
-  cout << " y el mux lee " << aIn.read() << " y " << bIn.read() << endl;
+  //cout << " y el mux lee " << aIn.read() << " y " << bIn.read() << endl;
 
   if (s0In.read())            
     cOut.write(aIn.read()); // se deja pasar el primer elemento 

@@ -189,6 +189,9 @@ void InstructionMemory::read() {
     return;
   }
 
+  cout << "----------------------------------------------------------------" << endl;
+  cout << "ejecutando " << line << endl << endl;
+
   //Leemos la instruccion (ADD, OR, SUB, etc..)
   string instruction = line.substr(1, line.find(' ')-1);
   line.erase(0, line.find(' ')+1);
@@ -241,8 +244,6 @@ void InstructionMemory::read() {
       sc_stop();
     break;
   }
-
-  cout << "instruccion " << _rd << " " <<_rs1 << " " << _rs2 << " " <<  _imm << " " << endl;
 
   rd.write(_rd);
   rs1.write(_rs1);
