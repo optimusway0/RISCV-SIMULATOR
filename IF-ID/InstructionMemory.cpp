@@ -242,6 +242,8 @@ void InstructionMemory::read() {
     break;
   }
 
+  cout << "instruccion " << _rd << " " <<_rs1 << " " << _rs2 << " " <<  _imm << " " << endl;
+
   rd.write(_rd);
   rs1.write(_rs1);
   rs2.write(_rs2);

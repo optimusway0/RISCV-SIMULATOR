@@ -4,6 +4,7 @@
 #include "Testbench.h"
 #include "Mux.h"
 #include "AndGate.h"
+#include "../ALU/alu.h"
 
 int sc_main (int argv, char* argc[]) 
 {   
@@ -16,6 +17,7 @@ int sc_main (int argv, char* argc[])
     Mux MUXWB("MUXWB");
     AndGate ANDGATE("ANDGATE");
     Testbench tb("tb");
+    Alu ALU("ALU");
 
     sc_signal<bool> memWriteSg, memReadSg; // estos cables conectan con Unidad de Control (memRead y memWrite)
     sc_signal< sc_int<32> > aluResultSg; // Este cable conecta el resultado de la ALU con la DataMemory y con el mux de la etapa WB
@@ -35,7 +37,7 @@ int sc_main (int argv, char* argc[])
     DM.clkIn(clock);
 
     MUXWB.aIn(dataMSg);
-    MUXWB.bIn(aluResultSg); 
+    MUXWB.bIn(aluResultSg); //
     MUXWB.cOut(wSg);
     MUXWB.s0In(mentoRegSg);
 
@@ -43,7 +45,8 @@ int sc_main (int argv, char* argc[])
     ANDGATE.bIn(zeroSg);
     ANDGATE.dOut(tbSgb);
 
-    tb.dirOut(aluResultSg);
+    ALU.aluResultOut(aluResultSg);//
+
     tb.wOut(dataRegSg);
     tb.wIn(wSg);
     tb.weOut(memWriteSg);

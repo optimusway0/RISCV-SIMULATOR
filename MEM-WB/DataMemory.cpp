@@ -11,7 +11,8 @@ DataMemory::DataMemory(sc_module_name mn) : sc_module(mn)
 
 DataMemory::~DataMemory() {}
 
-void DataMemory::Read() //Instruccion lw
+void DataMemory::Read() //Instruccion lw 
+
 {
     if(reIn.read() )
     {

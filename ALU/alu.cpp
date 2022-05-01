@@ -38,37 +38,55 @@ enum Instructions {
 };
 
 void Alu::operation() {
-	//std::cout << "alu realizando una operacion: " << ALUOpIn.read() << std::endl; // debug
 	switch (ALUOpIn.read()) {
 		// instrucciones de tipo R 
 		case ADD:
+		case ADDI:
 			aluResultOut.write(aIn.read() + bIn.read());
 		break;
 		case SUB:
 			aluResultOut.write(aIn.read() - bIn.read());
 		break;
 		case AND:
+		case ANDI:
 			aluResultOut.write(aIn.read() && bIn.read());
 		break;
 		case OR:
+		case ORI:
 			aluResultOut.write(aIn.read() || bIn.read());
 		break;
 		case XOR:
-			aluResultOut.write( ! aIn.read() && bIn.read() || aIn.read() && ! bIn.read());
+		case XORI:
+			aluResultOut.write( (!aIn.read() && bIn.read()) || (aIn.read() && !bIn.read()) );
 		break;
 		case SLT:
-  		case SLTU:
-  		case SLL:
-  		case SRL:
-  		case SRA:
-  		break;
-  		// instrucciones de tipo I etc
+  	case SLTU:
+  	case SLTI:
+  	case SLTUI:
+  		aluResultOut.write((aIn.read() < bIn.read()) ? 1 : 0);
+  	break;
+  	case SLL:
+  	case SLLI:
+  		aluResultOut.write(aIn.read() << bIn.read());
+  	break;
+  	case SRL:
+  	case SRLI:
+  	case SRA:
+  	case SRAI:
+  		aluResultOut.write(aIn.read() >> bIn.read());
+  	break;
+  	case BEQ:
+  		zeroSg.write(aIn.read() == bIn.read());  
+  	break;
+   	case BLT:
+   		zeroSg.write(aIn.read() < bIn.read());
+   	break;
+  	case BNE:
+  		zeroSg.write(aIn.read() != bIn.read());  
+  	break;			
 		default:
-			std::cout << "Instruccion invalida, por lo tanto finaliza la simulación" << std::endl;
-			sc_stop(); // instruccion invalida (no debeŕia entrar aquí)
-      	return;
+      return;
 		break;
 	}
-
 }
 

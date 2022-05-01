@@ -5,7 +5,7 @@
 
 class AndGate : public sc_module {
 public:
-  sc_in<bool> aIn, bIn;//, cIn;
+  sc_in<bool> aIn, bIn;
   sc_out<bool> dOut;
 
   SC_CTOR(AndGate);

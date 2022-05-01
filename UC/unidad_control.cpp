@@ -83,17 +83,18 @@ void UnidadControl::obtener_operacion() {
 
 	// instruccion de tipo salto
 	} else if (opcodeIn.read() >= BEQ && opcodeIn.read() <= BGE) {
+		cout << "UnidadControl llama un salto \n";
 		ALUSrcOut.write(false);         // el 2do operando de la ALu será el 2do registro leído del AR
 		MemtoRegOut.write(none);       // no se enviará al AR (no importa que valor se envie, no se usará)
 		RegWriteOut.write(false);      // no se permite la escritura en el registro AR
 		MemWriteOut.write(false);       // no se permite la escritura en DataMemory
 		MemReadOut.write(false);       // no se permite la lecutra en DataMemory
-		branchOut.write(true);        // sin saltos
+		branchOut.write(true);        // con saltos
 
 	}
 	else {
-		cout << "Instruccion invalida, cerrando simulacion" << endl;
-		sc_stop();
+		//cout << "Instruccion invalida, cerrando simulacion" << endl;
+		//sc_stop();
 	}
 }
 
